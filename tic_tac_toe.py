@@ -29,21 +29,36 @@ def is_full(board):
             return False
     return True
 
+def get_position(prompt):
+    while True:
+        try:
+            position = int(input(prompt))
+            if position < 0 or position > 2:
+                raise ValueError
+            return position
+        except ValueError:
+            print("Invalid input!")
+
+def get_move(current_player):
+    print(f"Player {current_player}'s turn")
+    while True:
+        row = get_position("Enter row (0-2): ")
+        column = get_position("Enter column (0-2): ")
+
+        if board[row][column] == " ":
+            board[row][column] = current_player
+            break
+
+        print("This spot is already taken")
+
+
 def main():
     print_board(board)
 
     current_player = "X"
 
     while True:
-        print(f"Player {current_player}'s turn")
-        row = int(input("Enter row (0-2): "))
-        column = int(input("Enter column (0-2): "))
-
-        if board[row][column] == " ":
-            board[row][column] = current_player
-        else:
-            print("This spot is already taken")
-            continue
+        get_move(current_player)
 
         print_board(board)
         if check_winner(board):
