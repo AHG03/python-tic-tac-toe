@@ -19,7 +19,7 @@ def check_winner(board):
         if row[0] == row[1] == row[2] != " ":
             return True
     for column in range(3):
-        if board[0][column] == board[1][column] == board[2] != " ":
+        if board[0][column] == board[1][column] == board[2][column] != " ":
             return True
     if ((board[0][0] == board[1][1] == board[2][2] != " ") or
         (board[0][2] == board[1][1] == board[2][0] != " ")):
